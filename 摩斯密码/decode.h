@@ -52,6 +52,12 @@ extern void decode_word()
 	cout << decode_inspection_number << endl;
 
 
+	int output_inspection_number = 0;
+
+	ofstream decodeFile;
+	decodeFile.open("decode_contect.txt", ofstream::app);
+	fstream file("decode_contect.txt", ios::out);
+
 	int decode_long_used = 0;
 	char* encipherment_to_decode[mix_encipherment] = {};
 	const char* encipherment_to_decode_exchange_type[mix_encipherment] = {};
@@ -78,12 +84,14 @@ extern void decode_word()
 			if (output_encipherment_word_char_star == password_word[0][a])
 			{
 				cout << small_word[a];
+				decodeFile << small_word[a];
 			}
 			if (a < 10)
 			{
 				if (output_encipherment_word_char_star == password_number[0][a])
 				{
 					cout << number_array[a];
+					decodeFile << number_array[a];
 				}
 			}
 		}
@@ -91,6 +99,15 @@ extern void decode_word()
 		decode_long_used += decode_array[i] + 1;
 		Sleep(300);
 	}
+
+	/*for (int txt_cout = 0; txt_cout < decode_inspection_number; txt_cout++)
+	{
+		
+		output_inspection_number++;
+	}*/
+	cout << endl << "文本输出完成!" << endl;
+	decodeFile.close();
+	cout << "文本文档已关闭!" << endl;
 }
 
 
